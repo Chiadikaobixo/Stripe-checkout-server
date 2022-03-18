@@ -5,7 +5,7 @@ async function createCheckoutSession(req, res) {
     const { line_items, customer_email } = req.body
 
     if (!line_items || !customer_email) {
-        return res.status(400).json({ error: 'missing required session parameters' })
+        return res.status(400).send({ error: 'missing required session parameters' })
     }
 
     let session
@@ -22,7 +22,7 @@ async function createCheckoutSession(req, res) {
         res.status(200).send({ sessionId: session.id })
     } catch (error) {
         console.log(error)
-        res.status(400).json({ error: 'an error occured, unable to create session' })
+        res.status(400).send({ error: 'an error occured, unable to create session' })
 
     }
 }
