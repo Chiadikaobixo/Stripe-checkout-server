@@ -9,13 +9,18 @@ const validateUser = require('./auth/validateUser')
 const getCards = require('./api/getPaymentMethod')
 const thePaymentIntent = require('./api/paymentIntent')
 const updatePaymentIntent = require('./api/updatePaymentIntent')
+const bodyParser = require("body-parser")
+
 
 const app = express()
 const port = 8080
 
+
 app.use(express.json({
     verify: (req, res, buffer) => req['rawBody'] = buffer
 }))
+
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use((_req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
