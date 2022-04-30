@@ -17,6 +17,13 @@ app.use(express.json({
     verify: (req, res, buffer) => req['rawBody'] = buffer
 }))
 
+app.use((_req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE')
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+    next()
+})
+
 app.use(cors())
 app.use(decodeJWT)
 app.post('/create-checkout-session', createCheckoutSession)
