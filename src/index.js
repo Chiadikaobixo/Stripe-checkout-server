@@ -20,7 +20,7 @@ app.use(express.json({
     verify: (req, res, buffer) => req['rawBody'] = buffer
 }))
 
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use((_req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
